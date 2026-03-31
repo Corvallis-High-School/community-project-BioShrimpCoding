@@ -11,9 +11,5 @@ class Main {
     JobApplication app = new JobApplication("Brandon", "brandon.sucks@gmail.com", "i suckvill",references,experinces, "6356259967");
     DeveloperAppliction devApp = new DeveloperAppliction("Gabe", "gabe.gay@gmail.com", "yourMomsTown", references, experinces, "6769420", "IHateMen", codingLanguages);
     MechanicApplication mechApp = new MechanicApplication("Nathan", "nathan.youExist@gmail.com", "Corvallisvill",references,experinces,"56987597",false,false,specialties);
-    app.print();
-    devApp.print();
-    mechApp.print();
-    
   }
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 class JobApplication {
     private String name;
@@ -7,10 +7,16 @@ class JobApplication {
     private ArrayList<String> experience;
     private ArrayList<String> references;
     private String contact_information;
+    protected Scanner input = new Scanner(System.in);
 
     // Constructor
     public JobApplication(){
-
+        name = "";
+        email = "";
+        address = "";
+        experience = null;
+        references = null;
+        contact_information = "";
     }
     public JobApplication(String name, String email, String address, ArrayList<String> references, ArrayList<String> experience, String phoneNumber) {
         this.name = name;
@@ -22,15 +28,15 @@ class JobApplication {
     }
 
     // Print Method
-    public void print() {
+    public String toString() {
         String formattedReferences = String.join(", ", getContacts());
         
-        System.out.println("Name: " + this.name + 
+        return "Name: " + this.name + 
                            "\nEmail: " + this.email + 
                            "\nAddress: " + this.address + 
                            "\nPast Jobs: " + this.getExperience() + 
                            "\nPeople to contact: " + formattedReferences + 
-                           "\nPhone number: " + this.contact_information);
+                           "\nPhone number: " + this.contact_information;
     }
 
     public String getExperience() {
@@ -73,7 +79,21 @@ public void setAddress(String address){
 public void setPhoneNumber(String number){
     this.contact_information = number;
 }
+public void getSkills() {
+    boolean keepGoing = true;
+    
+    while (keepGoing) {
+            System.out.println("What are some of your experiences?");
+            this.experience.add(input.nextLine()); 
+            System.out.println("Do you have more skills? (yes/no)");
+            String response = input.nextLine();
+        if (!response.equalsIgnoreCase("yes")) {
+            keepGoing = false;
+        }
+    }
 }
+}
+
 
 
 class DeveloperAppliction extends JobApplication{
@@ -81,6 +101,10 @@ class DeveloperAppliction extends JobApplication{
     private String githubProfile;
     private ArrayList<String> languages;
 
+    public DeveloperAppliction(){
+        githubProfile = "";
+        languages = null;
+    }
     public DeveloperAppliction(String name, String email, String address, ArrayList<String> references, ArrayList<String> experience, String phoneNumber, String githubProfile, ArrayList<String> programmingLanguages){
         super(name, email, address, references, experience,phoneNumber);
         this.githubProfile = githubProfile;
@@ -103,15 +127,28 @@ class DeveloperAppliction extends JobApplication{
         this.languages = languages;
     }
     @Override
-    public void print() {
-        // Call the parent class's print method to output the basic info
-        super.print(); 
+    public String toString() {
+        super.toString(); 
         
-        // Output the new info specific to DeveloperApplication
         String languagesFormatted = String.join(", ", this.languages);
-        System.out.println("GitHub Profile: " + this.githubProfile + 
-                           "\nProgramming Languages: " + languagesFormatted);
+        return "GitHub Profile: " + this.githubProfile + 
+                           "\nProgramming Languages: " + languagesFormatted;
     }
+
+    @Override
+    public void getSkills() {
+    boolean keepGoing = true;
+    
+    while (keepGoing) {
+            System.out.println("What programming language can you program in");
+            this.languages.add(input.nextLine()); 
+            System.out.println("Do you have more languages? (yes/no)");
+            String response = input.nextLine();
+        if (!response.equalsIgnoreCase("yes")) {
+            keepGoing = false;
+        }
+    }
+}
 
 }
 
@@ -121,6 +158,12 @@ class MechanicApplication extends JobApplication{
     private boolean hasTools;
     private ArrayList<String> specialties;
 
+
+    public MechanicApplication(){
+        aseCertified = false;
+        hasTools = false;
+        specialties = null;
+    }
     public MechanicApplication(String name, String email, String address, ArrayList<String> references, ArrayList<String> experience,  String phoneNumber, boolean aseCertified,  boolean hasOwnTools, ArrayList<String> specialties) {
         
         super(name, email, address, references, experience, phoneNumber);
@@ -155,8 +198,8 @@ class MechanicApplication extends JobApplication{
     }
 
     @Override
-    public void print() {
-        super.print(); 
+    public String toString() {
+        super.toString(); 
         
         String certifiedText = this.aseCertified ? "Yes" : "No";
         String toolsText = this.hasTools ? "Yes" : "No";
@@ -169,28 +212,23 @@ class MechanicApplication extends JobApplication{
         }
         
         // Print the mechanic-specific details
-        System.out.println("ASE Certified: " + certifiedText + 
+        return "ASE Certified: " + certifiedText + 
                            "\nHas Own Tools: " + toolsText + 
-                           "\nSpecialties: " + specialtiesFormatted);
+                           "\nSpecialties: " + specialtiesFormatted;
     }
 
-
-
-
+    @Override
+    public void getSkills() {
+    boolean keepGoing = true;
+    
+    while (keepGoing) {
+            System.out.println("What are some of your specialties");
+            this.specialties.add(input.nextLine()); 
+            System.out.println("Do you have more specialties? (yes/no)");
+            String response = input.nextLine();
+        if (!response.equalsIgnoreCase("yes")) {
+            keepGoing = false;
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
