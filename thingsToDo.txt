@@ -1,0 +1,8 @@
+From at least one super/parent class you will implement at least 2 sub/child classes
+Your sub/child classes must inherit all of the super/parent class attributes and methods
+Your sub/child classes must have at least one additional attribute and method which is distinct from the super/parent class
+Your sub/child classes must have a default no-argument constructor which also initializes all additional attributes
+Your sub/child classes must have a constructor which initializes all attributes using parameters 
+Your sub/child classes must have an overridden toString() method which returns all of its attributes' information
+Your sub/child classes must have a least one additional overridden method of the super/parent class which is distinct from its toString() method
+Add tables of the above listed attributes, constructors and methods for each additional class to your existing document

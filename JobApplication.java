@@ -9,6 +9,9 @@ class JobApplication {
     private String contact_information;
 
     // Constructor
+    public JobApplication(){
+
+    }
     public JobApplication(String name, String email, String address, ArrayList<String> references, ArrayList<String> experience, String phoneNumber) {
         this.name = name;
         this.email = email;
@@ -84,6 +87,93 @@ class DeveloperAppliction extends JobApplication{
         this.languages = programmingLanguages;
 
     }
+
+    public String getProfile(){
+        return this.githubProfile;
+
+    }
+    public ArrayList<String> getLanguages(){
+        return this.languages;
+    }
+
+    public void setProfile(String profile){
+        this.githubProfile = profile;
+    }
+    public void setLanguages(ArrayList<String> languages){
+        this.languages = languages;
+    }
+    @Override
+    public void print() {
+        // Call the parent class's print method to output the basic info
+        super.print(); 
+        
+        // Output the new info specific to DeveloperApplication
+        String languagesFormatted = String.join(", ", this.languages);
+        System.out.println("GitHub Profile: " + this.githubProfile + 
+                           "\nProgramming Languages: " + languagesFormatted);
+    }
+
+}
+
+class MechanicApplication extends JobApplication{
+
+    private boolean aseCertified;
+    private boolean hasTools;
+    private ArrayList<String> specialties;
+
+    public MechanicApplication(String name, String email, String address, ArrayList<String> references, ArrayList<String> experience,  String phoneNumber, boolean aseCertified,  boolean hasOwnTools, ArrayList<String> specialties) {
+        
+        super(name, email, address, references, experience, phoneNumber);
+        
+        this.aseCertified = aseCertified;
+        this.hasTools = hasOwnTools;
+        this.specialties = specialties;
+    }
+
+    public boolean isAseCertified() {
+        return this.aseCertified;
+    }
+
+    public void setAseCertified(boolean aseCertified) {
+        this.aseCertified = aseCertified;
+    }
+
+    public boolean getHasOwnTools() {
+        return this.hasTools;
+    }
+
+    public void setHasOwnTools(boolean hasOwnTools) {
+        this.hasTools = hasOwnTools;
+    }
+
+    public ArrayList<String> getSpecialties() {
+        return this.specialties;
+    }
+
+    public void setSpecialties(ArrayList<String> specialties) {
+        this.specialties = specialties;
+    }
+
+    @Override
+    public void print() {
+        super.print(); 
+        
+        String certifiedText = this.aseCertified ? "Yes" : "No";
+        String toolsText = this.hasTools ? "Yes" : "No";
+        
+        String specialtiesFormatted = "";
+        if (this.specialties != null && !this.specialties.isEmpty()) {
+            specialtiesFormatted = String.join(", ", this.specialties);
+        } else {
+            specialtiesFormatted = "None listed";
+        }
+        
+        // Print the mechanic-specific details
+        System.out.println("ASE Certified: " + certifiedText + 
+                           "\nHas Own Tools: " + toolsText + 
+                           "\nSpecialties: " + specialtiesFormatted);
+    }
+
 
 
 
